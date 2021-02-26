@@ -1,6 +1,7 @@
 package com.meiyoservices.bll;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.meiyoservices.bll.manager.ServerManager;
+import com.meiyoservices.bo.GameServer;
 
 /**
  * Servlet implementation class IndexServlet
@@ -31,7 +35,18 @@ public class IndexServlet extends HttpServlet {
 		if((boolean) request.getSession().getAttribute("isLogged"))
 		{
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/index.jsp");
+			
+			List<GameServer> serverList = ServerManager.getServerList();
+			GameServer selectedServ = null;
+			for(GameServer gs: serverList)
+			{
+				if(gs.getName().equals(request.getParameter("servername")))
+					selectedServ = gs;
+			}
+			
 			request.setAttribute("user", request.getSession().getAttribute("User"));
+			request.setAttribute("GAME_SERV", serverList);
+			request.setAttribute("selectedServ", selectedServ);
 			rd.forward(request, response);
 		} else {
 			String url = request.getContextPath() + "/login";

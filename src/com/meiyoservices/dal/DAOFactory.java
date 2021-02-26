@@ -5,4 +5,9 @@ public class DAOFactory {
 	{
 		return new UserDAO();
 	}
+	
+	public static GameServerDAO getGameServerDAO()
+	{
+		return new GameServerDAO();
+	}
 }

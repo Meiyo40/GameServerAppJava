@@ -1,0 +1,98 @@
+.custom-btn {
+    margin: 2px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 6px 12px;
+    text-decoration: none;
+}
+
+.custom-btn:hover {
+    color: white !important;
+}
+
+.custom-btn:active {
+    position: relative;
+    top: 1px;
+}
+
+.btn-green {
+    box-shadow: inset 0px 1px 0px 0px #9acc85;
+    background: linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
+    background-color: #74ad5a;
+    border: 1px solid #3b6e22;
+}
+
+.btn-green:hover {
+    background: linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);
+    background-color: #68a54b;
+}
+
+.btn-blue {
+    box-shadow: inset 0px 1px 0px 0px #004ec2;
+    background: linear-gradient(to bottom, #132d94 5%, #4781f5 100%);
+    background-color: #132d94;
+    border: 1px solid #0b76bd;
+}
+
+.btn-blue:hover {
+    background: linear-gradient(to bottom, #4781f5 5%, #132d94 100%);
+    background-color: #4781f5;
+}
+
+.btn-yellow {
+    box-shadow: inset 0px 1px 0px 0px #c2c200;
+    background: linear-gradient(to bottom, #947f13 5%, #f5f547 100%);
+    background-color: #947f13;
+    border: 1px solid #b7bd0b;
+}
+
+.btn-yellow:hover {
+    background: linear-gradient(to bottom, #f5f547 5%, #947f13 100%);
+    background-color: #f5f547;
+}
+
+.btn-red {
+    box-shadow: inset 0px 1px 0px 0px #c21700;
+    background: linear-gradient(to bottom, #941313 5%, #f54747 100%);
+    background-color: #941313;
+    border: 1px solid #bd0b0b;
+}
+
+.btn-red:hover {
+    background: linear-gradient(to bottom, #f54747 5%, #941313 100%);
+    background-color: #f54747;
+}
+
+.btn-sky {
+    box-shadow: inset 0px 1px 0px 0px #0095c2;
+    background: linear-gradient(to bottom, #137294 5%, #47f5ec 100%);
+    background-color: #137294;
+    border: 1px solid #0bb1bd;
+}
+
+.btn-sky:hover {
+    background: linear-gradient(to bottom, #47f5ec 5%, #137294 100%);
+    background-color: #47f5ec;
+}
+
+.btn-white {
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background: linear-gradient(to bottom, #ffffff 5%, #ffffff 100%);
+    background-color: #ffffff;
+    border: 1px solid #16289e;
+    color: #000000 !important;
+}
+
+.btn-white:hover {
+    background: linear-gradient(to bottom, #ffffff 5%, #ffffff 100%);
+    background-color: black;
+}
+
+.btn-white:active {
+    position: relative;
+    top: 1px;
+}

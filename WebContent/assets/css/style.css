@@ -34,7 +34,9 @@ a:hover,
 }
 
 .nav-element {
+    display: flex;
     margin-right: 1rem;
+    max-height: 35px;
 }
 
 .nav-container {
@@ -50,10 +52,15 @@ a:hover,
 
 #main-container {
     padding: 3rem;
-    padding-top: 5rem;
+    padding-top: 8rem;
     background-color: #1C1A57;
     border-radius: 1rem;
     min-width: 20rem;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#controlPanel {
+    display: flex;
 }
