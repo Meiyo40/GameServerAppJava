@@ -4,7 +4,7 @@ import com.meiyoservices.tool.BCrypt;
 
 public class User {
 	private int userId;
-	private String username;
+	public String username;
 	private String role;
 	private String password;
 	private String pwdSalt;

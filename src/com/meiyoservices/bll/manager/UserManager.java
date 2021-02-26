@@ -1,10 +1,12 @@
 package com.meiyoservices.bll.manager;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.meiyoservices.bo.User;
 import com.meiyoservices.dal.DAOFactory;
 import com.meiyoservices.dal.UserDAO;
+import com.meiyoservices.tool.BCrypt;
 import com.meiyoservices.tool.GenericToolbox;
 
 public class UserManager {
@@ -31,8 +33,25 @@ public class UserManager {
 		}
 	}
 	
-	public static void connectUser()
+	public static void connectUser(HttpServletRequest req)
 	{
+		HttpSession session= req.getSession();
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
 		
+		User user = userDAO.selectByName(username);
+		if(user != null)
+		{
+			boolean canConnect = BCrypt.checkpw(password, user.getPassword());
+			if (canConnect)
+			{
+				session.setAttribute("isLogged", true);
+				session.setAttribute("User", user);
+			} else {
+				session.setAttribute("isLogged", false);
+			}
+		} else {
+			session.setAttribute("isLogged", false);
+		}
 	}
 }

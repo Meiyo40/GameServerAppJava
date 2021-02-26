@@ -1,8 +1,6 @@
 package com.meiyoservices.bll;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class IndexServlet
+ * Servlet implementation class DisconnectServlet
  */
-@WebServlet("/index")
-public class IndexServlet extends HttpServlet {
+@WebServlet({ "/disconnect", "/logout" })
+public class DisconnectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IndexServlet() {
+    public DisconnectServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,28 +26,16 @@ public class IndexServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if((boolean) request.getSession().getAttribute("isLogged"))
-		{
-			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/index.jsp");
-			request.setAttribute("user", request.getSession().getAttribute("User"));
-			rd.forward(request, response);
-		} else {
-			String url = request.getContextPath() + "/login";
-			response.sendRedirect(url);
-		}
+		request.getSession().invalidate();
+		response.sendRedirect(request.getContextPath() + "/login");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if((boolean) request.getSession().getAttribute("isLogged"))
-		{
-			doGet(request, response);
-		} else {
-			String url = request.getContextPath() + "/login";
-			response.sendRedirect(url);
-		}
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

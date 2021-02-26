@@ -3,6 +3,12 @@
 	pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+	<jsp:useBean
+            	id="user"
+            	scope="request"
+            	class="com.meiyoservices.bo.User"
+            ></jsp:useBean>
+
     <html lang="fr">
 
     <head>
@@ -32,13 +38,14 @@
             </div>
             <div class="nav-right nav-container">
                 <div class="nav-element">
-                    <a href="/disconnect">Disconnect(username)</a>
+                    <a href="${pageContext.request.contextPath}/disconnect">Disconnect(<jsp:getProperty property="username" name="user"></jsp:getProperty>)</a>
                 </div>
             </div>
         </div>
 
         <div id="main-container">
-            <h2>Services</h2>
+            <h2>Services</h2>            
+            
             <div id="service-container">
 
             </div>

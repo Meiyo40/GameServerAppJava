@@ -23,7 +23,7 @@
                         <option value="admin">Admin</option>
                     </select>
                     <input type="test" name="key" placeholder="Admin Key" required>
-                    <button type="submit" class="btn btn-primary btn-block btn-large">Connect</button>
+                    <button id="submit" type="submit" class="btn btn-primary btn-block btn-large">Create</button>
                     <div id="info"></div>
                 </form>
             </div>
