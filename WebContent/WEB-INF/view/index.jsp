@@ -33,12 +33,6 @@
                             </form>
                             <input type="submit" value="GET" form="ServForm"></input>
                         </div>
-                        <div class="nav-element">
-                            Action2
-                        </div>
-                        <div class="nav-element">
-                            Action3
-                        </div>
                     </div>
                     <div class="nav-right nav-container">
                         <div class="nav-element">
@@ -59,7 +53,7 @@
                             <a href="${pageContext.request.contextPath}/api/server/reboot/${selectedServ.getName()}" class="custom-btn btn-yellow">Reboot</a>
                             <a href="${pageContext.request.contextPath}/api/server/stop/${selectedServ.getName()}" class="custom-btn btn-red">Stop</a>
                             <a href="${pageContext.request.contextPath}/api/server/save/${selectedServ.getName()}" class="custom-btn btn-sky">Save</a>
-                            <a href="${pageContext.request.contextPath}/api/server/download/${selectedServ.getName()}" class="custom-btn btn-white">Download</a>
+                            <a href="${pageContext.request.contextPath}/file?servername=${selectedServ.getName()}" class="custom-btn btn-white">Download</a>
                         </div>
                     </div>
                     <div id="return-container">

@@ -13,4 +13,15 @@ public class ServerManager {
 	{
 		return ServerDAO.selectAll();
 	}
+	
+	public static GameServer getServerByName(String name)
+	{
+		return ServerDAO.selectByName(name);
+	}
+	
+	public static void updateServer(GameServer gs)
+	{
+		ServerDAO.update(gs);
+	}
+	
 }
