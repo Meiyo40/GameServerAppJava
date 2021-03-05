@@ -39,7 +39,13 @@ public class UserManager {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		
-		User user = userDAO.selectByName(username);
+		User user = null;
+		
+		try {
+			user = userDAO.selectByName(username);
+		} catch(Exception e) {
+			session.setAttribute("isLogged", false);
+		}
 		if(user != null)
 		{
 			boolean canConnect = BCrypt.checkpw(password, user.getPassword());

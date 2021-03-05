@@ -19,19 +19,19 @@ import com.sun.jna.win32.StdCallLibrary;
 
 public class ScreenshotSystem {
 	
-	public static void doScreenShot(String windowTitle) throws AWTException, IOException 
+	public static void doScreenShot(String windowTitle, String PathToSave) throws AWTException, IOException 
 	{
 		int hWnd = User32.instance.FindWindowA(null, windowTitle);
         WindowInfo w = getWindowInfo(hWnd);
         User32.instance.SetForegroundWindow(w.hwnd);
         BufferedImage createScreenCapture = new Robot().createScreenCapture(new Rectangle(w.rect.left, w.rect.top, w.rect.right - w.rect.left, w.rect.bottom - w.rect.top));
-        ImageIO.write(createScreenCapture, "png", new File("screen.png"));
+        ImageIO.write(createScreenCapture, "jpg", new File(PathToSave));
 
         // listAllWindows();
 	}
 	
     @SuppressWarnings("unused")
-	private static void listAllWindows() throws AWTException, IOException {
+	public static void listAllWindows() throws AWTException, IOException {
         final List<WindowInfo> inflList = new ArrayList<WindowInfo>();
         final List<Integer> order = new ArrayList<Integer>();
         int top = User32.instance.GetTopWindow(0);

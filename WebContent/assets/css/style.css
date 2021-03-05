@@ -64,3 +64,10 @@ a:hover,
 #controlPanel {
     display: flex;
 }
+
+#settingsForm {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 300px;
+}

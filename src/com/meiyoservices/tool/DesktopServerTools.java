@@ -1,26 +1,11 @@
 package com.meiyoservices.tool;
 
-import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Properties;
-
 import com.meiyoservices.bll.manager.ServerManager;
 import com.meiyoservices.bo.GameServer;
-import com.meiyoservices.database.Database;
 
 public class DesktopServerTools {
-	private static Properties properties;
 	
-	static {
-		DesktopServerTools.properties = new Properties();
-		try {
-			DesktopServerTools.properties.load(Database.class.getResourceAsStream("server.properties"));
-			//steamRepository = DesktopServerTools.properties.getProperty("steamRepository");
-		}catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
 	
 	public static void rebootServer(GameServer gs)
 	{
@@ -29,8 +14,7 @@ public class DesktopServerTools {
 			Thread.sleep(5000);
 			DesktopServerTools.startServer(gs);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Reboot error");
 		}
 	}
 	
@@ -50,9 +34,8 @@ public class DesktopServerTools {
 		String serverName = gs.getProcessName();
 		
 		boolean isRunning = WindowsProcessManager.isProcessRunning(serverName);
-		isRunning = WindowsProcessManager.isProcessRunning(serverName);
 		if(!isRunning)
-			WindowsProcessManager.execCmd(serverPath + "\\" + serverName);
+			WindowsProcessManager.execCmd(serverPath + "\\start.bat");
 		
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		gs.setLastBoot(String.valueOf(ts.getTime()));
@@ -62,7 +45,7 @@ public class DesktopServerTools {
 	
 	public static void updateServer(GameServer gs)
 	{
-		DesktopServerTools.saveServer(gs.getWorldDir());
+		DesktopServerTools.saveServer(gs);
 		boolean isRunning = WindowsProcessManager.isProcessRunning(gs.getProcessName());
 		if(isRunning)
 			DesktopServerTools.stopServer(gs);
@@ -74,20 +57,29 @@ public class DesktopServerTools {
 				WindowsProcessManager.execCmd(gs.getDirPath() + "\\" + "update.bat");
 			}
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Update error");
 		}
 		
 	}
 	
-	public static void saveServer(String worldDir)
+	public static void saveServer(GameServer gs)
 	{
 		/*
 		 * BAT
 		 * cd C:\SERVER\_Tools\7Zip
 		 * start 7z a DirPathSaved.zip DirPathToSave
 		 * */
+		String worldDir = gs.getWorldDir();
+		String processToScreen = gs.getDirPath() + "\\" + gs.getProcessName();
 		WindowsProcessManager.execCmd(worldDir + "\\save.bat");
+		/*
+		 * try {
+			//Sample process name == "C:\\SERVER\\_Tools\\7Zip\\7z.exe"
+			ScreenshotSystem.doScreenShot(processToScreen, worldDir + "\\screen.jpg");
+		} catch (AWTException | IOException e) {
+			System.out.println("Screenshot error");
+		}
+		 * */
 	}
 	
 	

@@ -55,7 +55,7 @@
 .select-items {
     position: absolute;
     background-color: rgb(6, 48, 90);
-    top: 100%;
+    top: 200%;
     left: 0;
     right: 0;
     z-index: 99;

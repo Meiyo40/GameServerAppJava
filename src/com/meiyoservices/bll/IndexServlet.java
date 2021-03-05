@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.meiyoservices.bll.manager.ServerManager;
 import com.meiyoservices.bo.GameServer;
+import com.meiyoservices.tool.GenericToolbox;
 
 /**
  * Servlet implementation class IndexServlet
@@ -32,7 +33,13 @@ public class IndexServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if((boolean) request.getSession().getAttribute("isLogged"))
+		boolean connected = false;
+		try {
+			connected = (boolean) request.getSession().getAttribute("isLogged");
+		} catch (Exception e) {
+			System.out.println("LOGGED SESSION ?:? " + request.getSession().getAttribute("isLogged"));
+		}
+		if(connected)
 		{
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/index.jsp");
 			
@@ -42,6 +49,11 @@ public class IndexServlet extends HttpServlet {
 			{
 				if(gs.getName().equals(request.getParameter("servername")))
 					selectedServ = gs;
+			}
+			
+			if(selectedServ != null)
+			{
+				selectedServ.setUptime(GenericToolbox.parseUptime(selectedServ.getLastBoot()));
 			}
 			
 			request.setAttribute("user", request.getSession().getAttribute("User"));

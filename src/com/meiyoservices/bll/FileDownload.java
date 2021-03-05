@@ -44,7 +44,7 @@ public class FileDownload extends HttpServlet {
 			        throw new ServletException("File Name can't be null or empty");
 			    }
 
-			    String filepath = gs.getDataPath() + "\\" +filename;   //change your directory path
+			    String filepath = gs.getWorldDir() + "\\" +filename;   //change your directory path
 
 			    File file = new File(filepath);
 			    if(!file.exists())

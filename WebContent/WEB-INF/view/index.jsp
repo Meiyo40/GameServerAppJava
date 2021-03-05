@@ -55,6 +55,23 @@
                             <a href="${pageContext.request.contextPath}/api/server/save/${selectedServ.getName()}" class="custom-btn btn-sky">Save</a>
                             <a href="${pageContext.request.contextPath}/file?servername=${selectedServ.getName()}" class="custom-btn btn-white">Download</a>
                         </div>
+                        <form id="settingsForm" action="${pageContext.request.contextPath}/server/update/${selectedServ.getName()}" method="post">
+                            <label for="servername">ServerName: </label>
+                            <input type="text" name="servername" value="${selectedServ.getName()}">
+                            <label for="process_name">Process name: </label>
+                            <input type="text" name="process_name" value="${selectedServ.getProcessName()}">
+                            <label for="platform">Platform: </label>
+                            <input type="text" name="platform" value="${selectedServ.getPlatform()}">
+                            <label for="dirPath">Directory Path: </label>
+                            <input type="text" name="dirPath" value="${selectedServ.getDirPath()}">
+                            <label for="dataPath">Data Path: </label>
+                            <input type="text" name="dataPath" value="${selectedServ.getDataPath()}">
+                            <label for="worldPath">Map Directory: </label>
+                            <input type="text" name="worldPath" value="${selectedServ.getWorldDir()}">
+                            <label for="launchOption">Launch options: </label>
+                            <input type="text" name="launchOption" value="${selectedServ.getLaunchOption()}" placeholder="Unused">
+                            <input type="submit" value="Update Serv Settings">
+                        </form>
                     </div>
                     <div id="return-container">
 
